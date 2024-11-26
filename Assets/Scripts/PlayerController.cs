@@ -31,11 +31,20 @@ public class PlayerController : MonoBehaviour
         }
 
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed, Space.World);
+
+        if (horizontalInput < 0)
+        { 
+          transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        if (horizontalInput > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
 
 
-       // forwardInput = Input.GetAxis("Vertical");
-       // transform.Translate(Vector3.up * Time.deltaTime * speed * forwardInput);
+        // forwardInput = Input.GetAxis("Vertical");
+        // transform.Translate(Vector3.up * Time.deltaTime * speed * forwardInput);
 
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
@@ -47,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             //arrow shoot
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Instantiate(projectilePrefab, transform.position, transform.rotation);
         }
     }
 
