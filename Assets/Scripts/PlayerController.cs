@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 1;
     public float gravityModifier;
     public GameObject projectilePrefab;
-    //private bool isGrounded;
+    private bool isOnGround = true;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +38,10 @@ public class PlayerController : MonoBehaviour
        // transform.Translate(Vector3.up * Time.deltaTime * speed * forwardInput);
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);        
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); 
+            isOnGround = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -50,7 +51,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-     
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isOnGround = true;
+    }
 
 
 
