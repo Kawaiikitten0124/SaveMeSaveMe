@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dragonshooting : MonoBehaviour
+public class Goblinshooting : MonoBehaviour
 {
 
-    public GameObject fireball;
-    public Transform fireballPos;
+    public GameObject goblinAxe;
+    public Transform goblinAxePos;
 
     private float timer;
 
@@ -21,7 +21,7 @@ public class Dragonshooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 5)
+        if(timer > 3)
         {
             timer = 0;
             shoot();
@@ -30,6 +30,6 @@ public class Dragonshooting : MonoBehaviour
 
     void shoot()
     {
-        Instantiate(fireball, fireballPos.position, Quaternion.identity);
+        Instantiate(goblinAxe, goblinAxePos.position, Quaternion.identity);
     }
 }
