@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public GameObject projectilePrefab;
     private bool isOnGround = true;
+    public bool canshoot = true;
+    public float shootCoolDown;
 
     // Start is called before the first frame update
     void Start()
@@ -53,10 +55,12 @@ public class PlayerController : MonoBehaviour
             isOnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && canshoot)
         {
             //arrow shoot
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+            StartCoroutine(Cooldown());
+            
         }
     }
 
@@ -65,6 +69,12 @@ public class PlayerController : MonoBehaviour
         isOnGround = true;
     }
 
+    IEnumerator Cooldown()
+    { 
+     canshoot = false;
+        yield return new WaitForSeconds(shootCoolDown);
+        canshoot = true;
+    }
 
 
 }

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed= 3.0f;
     private Rigidbody2D enemyRb;
     private GameObject player;
+    public float horizontalInput;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,21 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector3(-7, transform.position.y, transform.position.z);
         }
+
+
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed, Space.World);
+
+        if (horizontalInput < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        if (horizontalInput > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
+
 
 
 }
