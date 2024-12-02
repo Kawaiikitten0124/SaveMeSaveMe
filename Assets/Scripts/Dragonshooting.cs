@@ -21,7 +21,7 @@ public class Dragonshooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 5)
+        if(timer > 6)
         {
             timer = 0;
             shoot();
