@@ -33,8 +33,8 @@ public class FireballScript : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             collider.GetComponent<PlayerController>().TakeDamage(damageAmount);
-            Debug.Log("axe damaged player");
-            // Destroy(gameObject);
+            //Debug.Log("Fireball damaged player");
+             Destroy(gameObject);
         }
 
 

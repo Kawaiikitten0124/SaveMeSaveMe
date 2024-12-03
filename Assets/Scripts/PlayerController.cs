@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public Slider healthSlider;
     public float playerHealth;
     public int damageAmount;
+    public bool hasHealthPotion;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +94,17 @@ public class PlayerController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         isOnGround = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HealthPotion"))
+        {
+            hasHealthPotion = true;
+            Destroy(collision.gameObject);
+
+            playerHealth = totalHealth;
+        }
+
     }
 
     //shooting arrow cooldown

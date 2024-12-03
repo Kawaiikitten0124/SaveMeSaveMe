@@ -582,6 +582,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 18, y: 3.208479}
   m_EdgeRadius: 0
+--- !u!1 &881036711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881036713}
+  - component: {fileID: 881036712}
+  m_Layer: 0
+  m_Name: HealthSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &881036712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881036711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0576e14d5a6cc3b419f751536f75750c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedHealthPotion: {fileID: 6537701522678555258, guid: 2430095920a896a4e9b4a1996d4eeddb, type: 3}
+  timeToSpawn: 10
+  spawnCountdown: 0
+--- !u!4 &881036713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881036711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.35, y: -1.75, z: -0.036580015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &944223160
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,6 +860,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1381893900}
   playerHealth: 100
   damageAmount: 0
+  hasHealthPotion: 0
 --- !u!50 &1187429390
 Rigidbody2D:
   serializedVersion: 4
@@ -1757,3 +1805,4 @@ SceneRoots:
   - {fileID: 4715152532417373658}
   - {fileID: 140286107}
   - {fileID: 2058864325}
+  - {fileID: 881036713}

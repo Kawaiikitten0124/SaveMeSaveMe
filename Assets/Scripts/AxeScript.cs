@@ -36,7 +36,7 @@ public class AxeScript : MonoBehaviour
         {
             collider.GetComponent<PlayerController>().TakeDamage(damageAmount);
            // Debug.Log("axe damaged player");
-           // Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         
