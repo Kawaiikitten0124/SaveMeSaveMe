@@ -73,17 +73,17 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if (currentHealth <1)
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
+        //if (currentHealth <1)
+       // {
+           // gameObject.SetActive(false);
+           // Destroy(gameObject);
+        //}
         healthSlider.value = currentHealth;
     }
 
     public void TakeDamage(float damageToTake)
     {
-        playerHealth = damageToTake;
+        playerHealth -= damageToTake;
         if (playerHealth <= 0)
         {
             Destroy(gameObject);
@@ -92,11 +92,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
-        }
-
         isOnGround = true;
     }
 

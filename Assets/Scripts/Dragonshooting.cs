@@ -8,11 +8,11 @@ public class Dragonshooting : MonoBehaviour
 
     public GameObject fireball;
     public Transform fireballPos;
-    public float enemyHealth;
     public int damageAmount;
-    public int totalHealth = 200;
+    public int totalHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
+    public float dragonHealth;
     private float timer;
 
     // Start is called before the first frame update
@@ -41,8 +41,8 @@ public class Dragonshooting : MonoBehaviour
 
     public void TakeDamage(float damageToTake)
     { 
-     enemyHealth = damageToTake;
-        if (enemyHealth <= 0)
+     dragonHealth = damageToTake;
+        if (dragonHealth <= 0)
         {
             Destroy(gameObject);
         }
