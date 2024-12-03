@@ -7,6 +7,7 @@ public class FireballScript : MonoBehaviour
     private GameObject player;
     private Rigidbody2D rb;
     public float force;
+    public float damageAmount = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,17 @@ public class FireballScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            collider.GetComponent<PlayerController>().TakeDamage(damageAmount);
+            Debug.Log("axe damaged player");
+            // Destroy(gameObject);
+        }
+
+
     }
 }

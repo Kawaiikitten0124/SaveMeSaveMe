@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         //}
         healthSlider.value = currentHealth;
     }
-
+    //health 
     public void TakeDamage(float damageToTake)
     {
         playerHealth -= damageToTake;
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         isOnGround = true;
     }
 
-
+    //shooting arrow cooldown
     IEnumerator Cooldown()
     { 
      canshoot = false;
