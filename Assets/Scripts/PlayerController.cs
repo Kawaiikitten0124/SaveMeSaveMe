@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool canshoot = true;
     public float shootCoolDown;
     public int totalHealth = 100;
-    public int currentHealth;
+    //public int currentHealth;
     public Slider healthSlider;
     public float playerHealth;
     public int damageAmount;
@@ -26,10 +26,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
       playerRb = GetComponent<Rigidbody2D>();
-        currentHealth = totalHealth;
+        playerHealth = totalHealth;
 
         healthSlider.maxValue = totalHealth;
-        healthSlider.value = currentHealth;
+        healthSlider.value = playerHealth;
      
     }
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
            // gameObject.SetActive(false);
            // Destroy(gameObject);
         //}
-        healthSlider.value = currentHealth;
+        healthSlider.value = playerHealth;
     }
     //health 
     public void TakeDamage(float damageToTake)

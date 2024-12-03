@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,14 +9,20 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D enemyRb;
     private GameObject player;
     public float horizontalInput;
-    public float enemyHealth;
+    public int totalHealth = 10;
     public int damageAmount;
+    public Slider healthSlider;
+    public float goblinHealth;
+   
 
     // Start is called before the first frame update
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
+       
+        healthSlider.maxValue = totalHealth;
+        healthSlider.value = goblinHealth;
     }
 
     // Update is called once per frame
@@ -39,27 +46,28 @@ public class Enemy : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+
+        healthSlider.value = goblinHealth;
     }
 
 
     public void TakeDamage(float damageToTake)
     {
-        enemyHealth = damageToTake;
-        if (enemyHealth <= 0)
+     goblinHealth -= damageToTake;
+        if (goblinHealth <= 0)
         {
             Destroy(gameObject);
         }
+
+        healthSlider.value = goblinHealth;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
+            FindObjectOfType<PlayerController>().playerHealth -= damageAmount;
         }
     }
-
-    
-
 
 }

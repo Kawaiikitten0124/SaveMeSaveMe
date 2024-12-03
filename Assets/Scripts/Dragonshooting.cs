@@ -10,7 +10,7 @@ public class Dragonshooting : MonoBehaviour
     public Transform fireballPos;
     public int damageAmount;
     public int totalHealth = 100;
-    public int currentHealth;
+    //public int currentHealth;
     public Slider healthSlider;
     public float dragonHealth;
     private float timer;
@@ -19,7 +19,7 @@ public class Dragonshooting : MonoBehaviour
     void Start()
     {
         healthSlider.maxValue = totalHealth;
-        healthSlider.value = currentHealth;
+        healthSlider.value = dragonHealth;
     }
 
     // Update is called once per frame
@@ -41,18 +41,20 @@ public class Dragonshooting : MonoBehaviour
 
     public void TakeDamage(float damageToTake)
     { 
-     dragonHealth = damageToTake;
+     dragonHealth -= damageToTake;
         if (dragonHealth <= 0)
         {
             Destroy(gameObject);
         }
+
+        healthSlider.value = dragonHealth;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
+            FindObjectOfType<PlayerController>().playerHealth -= damageAmount;
         }
     }
 }
