@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D enemyRb;
     private GameObject player;
     public float horizontalInput;
+    public float enemyHealth;
+    public int damageAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+    public void TakeDamage(float damageToTake)
+    {
+        enemyHealth = damageToTake;
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
+        }
+    }
+
+    
 
 
 }

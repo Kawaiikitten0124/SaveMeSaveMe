@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dragonshooting : MonoBehaviour
 {
 
     public GameObject fireball;
     public Transform fireballPos;
-
+    public float enemyHealth;
+    public int damageAmount;
+    public int totalHealth = 200;
+    public int currentHealth;
+    public Slider healthSlider;
     private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthSlider.maxValue = totalHealth;
+        healthSlider.value = currentHealth;
     }
 
     // Update is called once per frame
@@ -32,4 +38,23 @@ public class Dragonshooting : MonoBehaviour
     {
         Instantiate(fireball, fireballPos.position, Quaternion.identity);
     }
+
+    public void TakeDamage(float damageToTake)
+    { 
+     enemyHealth = damageToTake;
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
+        }
+    }
 }
+
+

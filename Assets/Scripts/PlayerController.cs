@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,12 +16,21 @@ public class PlayerController : MonoBehaviour
     private bool isOnGround = true;
     public bool canshoot = true;
     public float shootCoolDown;
+    public int totalHealth = 100;
+    public int currentHealth;
+    public Slider healthSlider;
+    public float playerHealth;
+    public int damageAmount;
 
     // Start is called before the first frame update
     void Start()
     {
       playerRb = GetComponent<Rigidbody2D>();
-     // Physics2D.gravity *= gravityModifier;
+        currentHealth = totalHealth;
+
+        healthSlider.maxValue = totalHealth;
+        healthSlider.value = currentHealth;
+     
     }
 
     // Update is called once per frame
@@ -62,12 +72,34 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Cooldown());
             
         }
+
+        if (currentHealth <1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        healthSlider.value = currentHealth;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void TakeDamage(float damageToTake)
     {
+        playerHealth = damageToTake;
+        if (playerHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            FindObjectOfType<PlayerController>().currentHealth -= damageAmount;
+        }
+
         isOnGround = true;
     }
+
 
     IEnumerator Cooldown()
     { 
