@@ -8,6 +8,7 @@ public class FireballScript : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public float damageAmount = 20;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class FireballScript : MonoBehaviour
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -30,13 +33,15 @@ public class FireballScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (gameManager.gameIsActive)
         {
-            collider.GetComponent<PlayerController>().TakeDamage(damageAmount);
-            //Debug.Log("Fireball damaged player");
-             Destroy(gameObject);
+            if (collider.gameObject.tag == "Player")
+            {
+                collider.GetComponent<PlayerController>().TakeDamage(damageAmount);
+                //Debug.Log("Fireball damaged player");
+                Destroy(gameObject);
+            }
+
         }
-
-
     }
 }

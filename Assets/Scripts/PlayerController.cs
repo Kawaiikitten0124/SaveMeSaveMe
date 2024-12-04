@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float playerHealth;
     public int damageAmount;
     public bool hasHealthPotion;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,9 @@ public class PlayerController : MonoBehaviour
 
         healthSlider.maxValue = totalHealth;
         healthSlider.value = playerHealth;
-     
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -87,7 +91,9 @@ public class PlayerController : MonoBehaviour
         playerHealth -= damageToTake;
         if (playerHealth <= 0)
         {
+            gameManager.GameOver(false);
             Destroy(gameObject);
+          
         }
     }
 

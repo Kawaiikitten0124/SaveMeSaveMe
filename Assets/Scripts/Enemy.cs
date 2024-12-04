@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     public int damageAmount;
     public Slider healthSlider;
     public float goblinHealth;
-   
+    private GameManager gameManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,31 +24,37 @@ public class Enemy : MonoBehaviour
        
         healthSlider.maxValue = totalHealth;
         healthSlider.value = goblinHealth;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyRb.AddForce((player.transform.position - transform.position) * speed);
-        if (transform.position.x < -7)
+        if (gameManager.gameIsActive)
         {
-            transform.position = new Vector3(-7, transform.position.y, transform.position.z);
+
+
+            enemyRb.AddForce((player.transform.position - transform.position) * speed);
+            if (transform.position.x < -7)
+            {
+                transform.position = new Vector3(-7, transform.position.y, transform.position.z);
+            }
+
+
+            horizontalInput = Input.GetAxis("Horizontal");
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed, Space.World);
+
+            if (horizontalInput < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            if (horizontalInput > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
+            healthSlider.value = goblinHealth;
         }
-
-
-        horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed, Space.World);
-
-        if (horizontalInput < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        if (horizontalInput > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
-        healthSlider.value = goblinHealth;
     }
 
 

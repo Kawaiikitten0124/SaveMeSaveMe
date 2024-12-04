@@ -14,12 +14,15 @@ public class Dragonshooting : MonoBehaviour
     public Slider healthSlider;
     public float dragonHealth;
     private float timer;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         healthSlider.maxValue = totalHealth;
         healthSlider.value = dragonHealth;
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -44,6 +47,7 @@ public class Dragonshooting : MonoBehaviour
      dragonHealth -= damageToTake;
         if (dragonHealth <= 0)
         {
+            gameManager.GameOver(true);
             Destroy(gameObject);
         }
 
