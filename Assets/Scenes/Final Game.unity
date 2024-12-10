@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnedHealthPotion: {fileID: 6537701522678555258, guid: 2430095920a896a4e9b4a1996d4eeddb, type: 3}
-  timeToSpawn: 10
+  timeToSpawn: 20
   spawnCountdown: 0
 --- !u!4 &881036713
 Transform:
@@ -2439,6 +2439,22 @@ PrefabInstance:
     - target: {fileID: 4326657191792196767, guid: 4a8b2cc40afb1b04eb8c7d5a3100e19a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994352384799346190, guid: 4a8b2cc40afb1b04eb8c7d5a3100e19a, type: 3}
+      propertyPath: m_Size.x
+      value: 3.4692738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994352384799346190, guid: 4a8b2cc40afb1b04eb8c7d5a3100e19a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.2922142
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994352384799346190, guid: 4a8b2cc40afb1b04eb8c7d5a3100e19a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.41079533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994352384799346190, guid: 4a8b2cc40afb1b04eb8c7d5a3100e19a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.36772537
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
